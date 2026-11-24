@@ -1,0 +1,25 @@
+top_share,efficiency,grid,reduction_pct
+0.1,0.05,grid today 0.37,8.44
+0.1,0.05,grid cleaner 0.20,11.82
+0.1,0.1,grid today 0.37,10.25
+0.1,0.1,grid cleaner 0.20,13.45
+0.1,0.15,grid today 0.37,12.06
+0.1,0.15,grid cleaner 0.20,15.08
+0.2,0.05,grid today 0.37,9.98
+0.2,0.05,grid cleaner 0.20,14.07
+0.2,0.1,grid today 0.37,12.11
+0.2,0.1,grid cleaner 0.20,15.99
+0.2,0.15,grid today 0.37,14.25
+0.2,0.15,grid cleaner 0.20,17.91
+0.3,0.05,grid today 0.37,10.54
+0.3,0.05,grid cleaner 0.20,14.93
+0.3,0.1,grid today 0.37,12.8
+0.3,0.1,grid cleaner 0.20,16.96
+0.3,0.15,grid today 0.37,15.06
+0.3,0.15,grid cleaner 0.20,18.98
+0.5,0.05,grid today 0.37,10.86
+0.5,0.05,grid cleaner 0.20,15.44
+0.5,0.1,grid today 0.37,13.17
+0.5,0.1,grid cleaner 0.20,17.51
+0.5,0.15,grid today 0.37,15.48
+0.5,0.15,grid cleaner 0.20,19.59

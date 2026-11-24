@@ -1,0 +1,16 @@
+unit_type,fuel,units,mt_co2e,avg_t_per_unit
+other combustion,naturalGas,3116,84.81,27218.0
+other,naturalGas,8211,76.3,9293.0
+furnace,biomass,155,70.85,457079.0
+boiler,naturalGas,8464,62.79,7419.0
+other combustion,other,327,42.26,129237.0
+heater,other,1082,35.66,32956.0
+boiler,other,632,35.42,56051.0
+boiler,biomass,463,31.05,67056.0
+turbine,naturalGas,559,25.09,44892.0
+heater,naturalGas,4634,22.0,4747.0
+dryer,naturalGas,1559,21.59,13847.0
+furnace,naturalGas,2046,19.21,9391.0
+flare,naturalGas,509,17.76,34898.0
+furnace,other,277,13.75,49649.0
+other,gasoline,622,12.22,19652.0

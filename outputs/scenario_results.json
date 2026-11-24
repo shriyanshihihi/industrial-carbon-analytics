@@ -1,0 +1,30 @@
+{
+  "baseline_Mt": 707.8,
+  "EF_t_per_MJ": {
+    "biomass": 8.964e-05,
+    "coal": 8.913e-05,
+    "coke": 0.0001085,
+    "diesel": 7.034e-05,
+    "naturalGas": 5.034e-05,
+    "other": 5.62e-05,
+    "resFuelOil": 7.142e-05
+  },
+  "base_case_reduction_pct": {
+    "S1 efficiency only": 5.06,
+    "S2 efficiency + fuel switching": 8.15,
+    "S3 efficiency + fuel switching + electrification": 12.11
+  },
+  "sensitivity_range_pct": [
+    8.44,
+    19.59
+  ],
+  "units_targeted": 5596,
+  "share_of_units_targeted_pct": 10.4,
+  "share_of_baseline_emissions_in_targeted_units_pct": 50.6,
+  "reduction_by_lever_Mt": {
+    "fuel_switch": 37.32,
+    "electrification": 37.79
+  },
+  "total_reduction_Mt": 85.7,
+  "same_package_random_targeting_pct": 2.61
+}

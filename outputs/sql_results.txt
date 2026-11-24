@@ -1,0 +1,139 @@
+
+### Q1: Q1: overall picture by data source
+        source  units  mt_co2e  pct_total
+ghgrp_unit_est  10049    321.3       45.4
+           nei  41811    283.2       40.0
+         ghgrp   1788    103.2       14.6
+
+### Q2: Q2: emissions by fuel
+      fuel  units  mt_co2e  pct_total  avg_t_per_unit
+naturalGas  36597    376.5       53.2         10287.0
+     other   3015    156.9       22.2         52025.0
+   biomass   1869    121.0       17.1         64761.0
+      coal    346     21.1        3.0         60912.0
+  gasoline   1410     13.7        1.9          9694.0
+    diesel   8376      7.5        1.1           897.0
+    lpgHGL   1281      5.1        0.7          3970.0
+      coke     54      2.7        0.4         50415.0
+resFuelOil    387      2.5        0.4          6453.0
+   unknown    280      0.8        0.1          2835.0
+      jetA     33      0.0        0.0           578.0
+
+### Q3: Q3: emissions by process unit type
+       unit_type  units  mt_co2e  pct_total  avg_t_per_unit
+          boiler  11024    141.6       20.0         12842.0
+other combustion   4266    136.0       19.2         31887.0
+           other  13052    108.5       15.3          8311.0
+         furnace   2593    104.5       14.8         40306.0
+          heater   6172     60.0        8.5          9722.0
+         turbine    654     31.2        4.4         47732.0
+           dryer   1907     28.8        4.1         15118.0
+           flare    669     27.2        3.8         40668.0
+            kiln    754     26.7        3.8         35370.0
+     incinerator    541     11.1        1.6         20517.0
+          engine   5711      9.5        1.3          1668.0
+thermal oxidizer    507      7.4        1.1         14691.0
+            oven   2255      4.7        0.7          2090.0
+       generator   2174      3.7        0.5          1693.0
+           stove     12      3.1        0.4        260778.0
+      compressor    525      2.4        0.3          4488.0
+   building heat     35      0.9        0.1         25789.0
+    distillation      6      0.2        0.0         32072.0
+            pump    791      0.2        0.0           240.0
+
+### Q4: Q4: emissions by industry (NAICS-3)
+                           industry  units  mt_co2e  pct_total
+                          Chemicals   7066    144.4       20.4
+          Petroleum & coal products   4055    137.4       19.4
+                              Paper   1962    113.3       16.0
+               Oil & gas extraction   5568     68.1        9.6
+                           Food mfg   5172     42.5        6.0
+                     Primary metals   2735     39.5        5.6
+                   Other (NAICS 32)   1185     32.8        4.6
+Nonmetallic minerals (cement, lime)   2061     32.7        4.6
+                      Wood products   1363     18.4        2.6
+                   Mining (non-oil)   2380     11.4        1.6
+                    Other (NAICS 2)   2180     10.1        1.4
+                  Fabricated metals   3456      8.4        1.2
+           Transportation equipment   2955      7.1        1.0
+                  Other (NAICS 213)    534      5.2        0.7
+                  Plastics & rubber   1684      4.7        0.7
+
+### Q5: Q5: top 15 states
+state  units  mt_co2e
+   TX   6403    105.1
+   CA   8144     71.8
+   LA   1696     50.3
+   IN    519     25.8
+   CO   1275     25.3
+   PA   2809     25.2
+   AL    491     23.9
+   FL    634     22.2
+   GA    725     19.2
+   MI   1467     19.1
+   NC   1614     18.4
+   OH   1498     17.9
+   OK   1113     16.5
+   WY   1572     14.8
+   IL   1747     14.3
+
+### Q6: Q6: Pareto - how concentrated are emissions? (window functions)
+           slice  pct_of_co2e
+ top 1% of units         40.3
+ top 5% of units         76.4
+top 10% of units         88.9
+top 20% of units         96.2
+
+### Q7: Q7: hotspot combos - unit type x fuel (min 30 units)
+       unit_type       fuel  units  mt_co2e  avg_t_per_unit
+other combustion naturalGas   3116    84.81         27218.0
+           other naturalGas   8211    76.30          9293.0
+         furnace    biomass    155    70.85        457079.0
+          boiler naturalGas   8464    62.79          7419.0
+other combustion      other    327    42.26        129237.0
+          heater      other   1082    35.66         32956.0
+          boiler      other    632    35.42         56051.0
+          boiler    biomass    463    31.05         67056.0
+         turbine naturalGas    559    25.09         44892.0
+          heater naturalGas   4634    22.00          4747.0
+           dryer naturalGas   1559    21.59         13847.0
+         furnace naturalGas   2046    19.21          9391.0
+           flare naturalGas    509    17.76         34898.0
+         furnace      other    277    13.75         49649.0
+           other   gasoline    622    12.22         19652.0
+
+### Q8: Q8: top 20 facilities
+                            facility state                  industry  units  mt_co2e
+            TESORO LOS ANGELES RFNRY    CA                 Chemicals     78    13.55
+            HECKETT MULTISERV PLT 84    IN            Primary metals     25     6.77
+                         EXXON MOBIL    TX                 Chemicals     18     5.42
+          CLEVELAND CLIFFS BURNS HBR    IN Petroleum & coal products     14     4.50
+                   PORT ARTHUR RFNRY    TX          Other (NAICS 32)     82     4.40
+        LOS ANGELES RFNRY LARYNGLGST    CA Petroleum & coal products     26     4.25
+          FORMOSA PLASTICS CORPRT TX    TX                 Chemicals     57     3.82
+CITGO PETRO LAKE CHARLES MFG COMPLEX    LA                 Chemicals     76     3.69
+            CITGO LAKE CHARLES RFNRY    LA Petroleum & coal products     30     3.57
+             ARCELORMITTAL CLEVELAND    OH            Primary metals      8     3.53
+                FORMOSA PT CMFRT PLT    NA                 Chemicals     44     3.26
+           EXXON MOBIL BAYTOWN RFNRY    TX Petroleum & coal products    127     3.19
+                CLEVELAND CLIFFS STL    IN            Primary metals      7     3.17
+                     DEER PARK RFNRY    TX Petroleum & coal products     68     3.13
+                     CF IND NITROGEN    LA                 Chemicals     13     2.94
+      SHELL NORCO CHEM PLT EAST SITE    LA          Other (NAICS 32)     36     2.81
+                 DOW TX OPR FREEPORT    TX                 Chemicals     56     2.79
+  BP EXPLORATION ALA CENTRAL CMPSR P    AK      Oil & gas extraction     21     2.78
+                  US STL GLS 80 MILL    MI            Primary metals     27     2.65
+                        CHEVRON LUBE    CA Petroleum & coal products     22     2.42
+
+### Q9: Q9: units that are hotspots WITHIN their industry (top decile via NTILE)
+                           industry  hotspot_units  mt_co2e
+                          Chemicals            707    114.6
+          Petroleum & coal products            406    103.5
+                              Paper            197     88.0
+               Oil & gas extraction            557     54.1
+                           Food mfg            518     36.0
+                     Primary metals            274     34.8
+Nonmetallic minerals (cement, lime)            207     26.0
+                   Other (NAICS 32)            119     25.8
+                      Wood products            137     15.9
+                   Mining (non-oil)            238     10.6

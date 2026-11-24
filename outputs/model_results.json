@@ -1,0 +1,97 @@
+{
+  "A_with_energy": {
+    "ridge": {
+      "R2": 0.999,
+      "MAE_log10": 0.015,
+      "typical_error_factor": 1.03
+    },
+    "gbr": {
+      "R2": 0.999,
+      "MAE_log10": 0.017,
+      "typical_error_factor": 1.04
+    },
+    "n_train": 34296,
+    "n_test": 8396,
+    "shap_group_importance_log10": {
+      "Energy use": 1.2705,
+      "Fuel type": 0.061,
+      "Industry (NAICS)": 0.0051,
+      "Data source": 0.0038,
+      "Unit type": 0.0037,
+      "Design capacity": 0.0035,
+      "Operating hours": 0.0027,
+      "State": 0.0025
+    },
+    "shap_category_effect_log10": {
+      "fuel_biomass": 0.098,
+      "fuel_diesel": 0.022,
+      "unit_other combustion": 0.005,
+      "fuel_gasoline": 0.002,
+      "unit_incinerator": 0.002,
+      "unit_kiln": 0.001,
+      "unit_compressor": 0.0,
+      "unit_dryer": -0.0,
+      "unit_furnace": -0.0,
+      "unit_pump": 0.0,
+      "unit_thermal oxidizer": 0.0,
+      "unit_turbine": 0.0,
+      "unit_boiler": -0.001,
+      "unit_other": -0.002,
+      "unit_engine": -0.003,
+      "unit_heater": -0.003,
+      "unit_generator": -0.004,
+      "unit_oven": -0.005,
+      "fuel_other": -0.008,
+      "unit_flare": -0.011,
+      "fuel_lpgHGL": -0.037,
+      "fuel_naturalGas": -0.093
+    }
+  },
+  "B_without_energy": {
+    "ridge": {
+      "R2": 0.53,
+      "MAE_log10": 0.798,
+      "typical_error_factor": 6.28
+    },
+    "gbr": {
+      "R2": 0.617,
+      "MAE_log10": 0.696,
+      "typical_error_factor": 4.97
+    },
+    "n_train": 34296,
+    "n_test": 8396,
+    "shap_group_importance_log10": {
+      "Fuel type": 0.564,
+      "Design capacity": 0.5093,
+      "State": 0.2716,
+      "Unit type": 0.2641,
+      "Industry (NAICS)": 0.252,
+      "Operating hours": 0.1185,
+      "Data source": 0.0705
+    },
+    "shap_category_effect_log10": {
+      "fuel_naturalGas": 0.399,
+      "unit_kiln": 0.322,
+      "fuel_biomass": 0.276,
+      "unit_furnace": 0.26,
+      "unit_turbine": 0.247,
+      "unit_flare": 0.245,
+      "fuel_other": 0.23,
+      "unit_boiler": 0.111,
+      "unit_incinerator": 0.104,
+      "unit_thermal oxidizer": 0.086,
+      "unit_dryer": 0.083,
+      "unit_other combustion": 0.039,
+      "unit_other": -0.021,
+      "unit_heater": -0.033,
+      "unit_compressor": -0.094,
+      "unit_oven": -0.103,
+      "fuel_gasoline": -0.243,
+      "unit_engine": -0.297,
+      "unit_pump": -0.408,
+      "unit_generator": -0.675,
+      "fuel_diesel": -0.917,
+      "fuel_lpgHGL": -0.989
+    }
+  }
+}
