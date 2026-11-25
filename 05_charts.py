@@ -1,6 +1,16 @@
+"""
+STEP 5 - CHARTS + SELF-CHECK: draw the pictures you will show, and confirm totals match.
+
+OUTPUT : outputs/charts/pareto.png, hotspots_unit_fuel.png, scenario_steps.png
+CHECK  : asserts the SQLite table has the same row count and total as the clean CSV (53,648 rows, 707.8 Mt).
+USE IT : open these three charts (plus the SHAP chart) when you explain the project.
+"""
+import os
+ROOT = os.path.dirname(os.path.abspath(__file__))   # project folder, so the scripts run from anywhere
+
 import pandas as pd, numpy as np, matplotlib, sqlite3
 matplotlib.use("Agg"); import matplotlib.pyplot as plt
-OUT="/home/claude/project"; d=pd.read_csv(f"{OUT}/data/emissions_clean.csv", low_memory=False)
+OUT=ROOT; d=pd.read_csv(f"{OUT}/data/emissions_clean.csv", low_memory=False)
 C="#2a6f97"
 # 1 Pareto
 s=np.sort(d.co2e_t.values)[::-1]; cum=np.cumsum(s)/s.sum(); x=np.arange(1,len(s)+1)/len(s)*100

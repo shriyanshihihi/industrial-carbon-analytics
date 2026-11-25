@@ -1,6 +1,33 @@
-"""Step 4 - decarbonization scenarios, targeted at hotspot units. All assumptions are explicit parameters."""
+"""
+STEP 4 - SCENARIOS: answer "WHAT IF we cut emissions at the worst units?"
+
+IN PLAIN WORDS
+  Applies three reduction levers to the biggest emitters and recomputes emissions. This is arithmetic on the data
+  plus stated assumptions, NOT a fitted prediction.
+
+INPUT   : data/emissions_clean.csv
+OUTPUT  : outputs/scenario_results.json and Tableau tables (by unit type, by industry, sensitivity grid, unit table)
+
+HOW IT WORKS
+  - Target: top 20% of emitters inside each heat-unit type (boiler, furnace, heater, dryer, kiln, oven, other
+    combustion); biomass and unknown fuel excluded (biogenic CO2 is reported separately). 5,596 units hold 50.6% of emissions.
+  - Lever 1 efficiency: 10% less energy.
+  - Lever 2 fuel switching: coal/coke/oil/diesel/gasoline/other -> natural gas, using emission factors measured in this data.
+  - Lever 3 electrification: gas boilers/heaters/dryers/ovens -> heat pumps (COP 3) on a grid of 0.37 t/MWh.
+  - Each unit gets at most one of levers 2 or 3; efficiency stacks on top (no double counting).
+RESULT  : 12.1% on today's grid; 16.0% on a cleaner grid (0.20 t/MWh); 24-case range 8.4%-19.6%;
+          same package spread randomly = 2.6%.
+ASSUMPTIONS TO VERIFY: COP 3 and the grid values are assumptions (check against current sources such as EPA eGRID).
+
+CV LINK : "recommending decarbonization strategies with 15%+ projected emission reduction".
+HONEST WORDING: "up to about 16% under a cleaner-grid scenario; 12.1% on today's grid". It is a projection of
+  technical potential. Costs, equipment lifetimes and temperature limits are not modelled.
+"""
+import os
+ROOT = os.path.dirname(os.path.abspath(__file__))   # project folder, so the scripts run from anywhere
+
 import pandas as pd, numpy as np, json
-OUT="/home/claude/project"
+OUT=ROOT
 d = pd.read_csv(f"{OUT}/data/emissions_clean.csv", low_memory=False)
 base_total = d.co2e_t.sum()
 

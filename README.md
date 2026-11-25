@@ -1,6 +1,10 @@
-# Industrial Carbon Analytics (FIED 2017) - run order
+# Industrial Carbon Analytics
+
+**New here? Read `PROJECT_GUIDE.md` first.**
+
 Data: NREL/Argonne Foundational Industry Energy Dataset 2017 (CC BY 4.0), https://data.openei.org/submissions/6158
-1. python 01_prepare.py <fied_units.csv>   -> data/emissions_clean.csv + data/fied.db (SQLite)
+0. python 00_extract_units.py <foundational_industry_data_2017.csv>   -> data/raw/fied_units.csv (one-time)
+1. python 01_prepare.py   -> data/emissions_clean.csv + data/fied.db (SQLite)
 2. python 02_run_sql.py                     -> runs sql/hotspots.sql, writes outputs/tableau/q*.csv
 3. python 03_model.py                       -> ridge + gradient boosting + SHAP; outputs/model_results.json, charts
 4. python 04_scenarios.py                   -> scenario results, sensitivity grid, Tableau tables

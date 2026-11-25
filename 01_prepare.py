@@ -1,7 +1,36 @@
-"""Step 1 - load FIED unit-level data, build the analytic table, load into SQLite."""
+"""
+STEP 1 - PREPARE: turn the raw FIED file into one clean, trustworthy table.
+
+IN PLAIN WORDS
+  The raw data has many blank and wrong values. This step fixes that and writes ONE clean table that every
+  later step reads. If this step is wrong, everything after it is wrong.
+
+INPUT   : fied_units.csv (unit-level FIED 2017 rows; make it with 00_extract_units.py)
+OUTPUT  : data/emissions_clean.csv and data/fied.db (SQLite table "emissions")
+
+WHAT HAPPENS (in order)
+  1. Take CO2e from the reported column; where blank, use the NEI median estimate (Q2 column).
+     -> usable rows go from 12,967 to 55,568.  (supports the "50K+ records" claim)
+  2. Drop zero-emission rows (1,702).
+  3. RULE A - plausibility cap: 3 Mt per unit for GHGRP-reported rows, 1 Mt for modelled rows (218 dropped).
+     Why: before the cap the total was ~79,600 Mt, far above the real industrial figure, so the NEI file
+     contains unit-conversion errors. The biggest reported unit is 1.6 Mt, so modelled values above 1 Mt are suspect.
+  4. RULE B - flags (rows are KEPT, only marked): emission factor outside 1e-5..3e-4 t/MJ, and energy above
+     100x nameplate capacity at full load. Capacities are often placeholders, so we flag instead of deleting.
+  5. Build features: industry from the NAICS code, capacity in MW, average weekly operating hours.
+
+CV LINK : "Analyzed 50K+ industrial emission records" -> final count 53,648 records, 707.8 Mt CO2e.
+SAY IT  : "Most of the work was making the data trustworthy: I capped impossible values and flagged doubtful rows."
+IF REMOVED: hotspots would be fake (a coffee roaster at 2 Mt, total 79,600 Mt).
+"""
+import os
+ROOT = os.path.dirname(os.path.abspath(__file__))   # project folder, so the scripts run from anywhere
+
 import pandas as pd, numpy as np, sqlite3, sys
-SRC = sys.argv[1] if len(sys.argv) > 1 else "/home/claude/units/fied_units.csv"
-OUT = "/home/claude/project"
+SRC = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "data", "raw", "fied_units.csv")
+if not os.path.exists(SRC):
+    sys.exit(f"Input not found: {SRC}\nRun 00_extract_units.py first, or pass the path: python 01_prepare.py <fied_units.csv>")
+OUT = ROOT
 
 df = pd.read_csv(SRC, low_memory=False)
 print("unit-level rows loaded:", len(df))

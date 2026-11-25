@@ -1,4 +1,29 @@
-"""Step 3 - regression models + SHAP: what drives unit-level CO2e?"""
+"""
+STEP 3 - MODEL: answer "WHY do some units emit so much more?"
+
+IN PLAIN WORDS
+  Trains two regression models to predict log10 of a unit's CO2e, then uses SHAP to see which inputs the
+  model relies on. Two versions: A uses energy as an input, B does not.
+
+INPUT   : data/emissions_clean.csv (only rows that passed both quality flags: 42,692)
+OUTPUT  : outputs/model_results.json, outputs/charts/shap_*.png, outputs/tableau/model_B_pred_vs_actual.csv
+
+KEY DECISIONS (be ready to defend each)
+  - Target is log10(CO2e): emissions span a few tonnes to over a million, so errors become relative.
+  - Train/test split is BY FACILITY: units in one plant are similar; a random split would leak and inflate the score.
+  - Ridge = simple baseline. Gradient boosting (300 trees, depth 4, rate 0.08) = stronger non-linear model.
+  - Model A (with energy) scores 0.999 but that is arithmetic (CO2e = energy x emission factor), so it is only a
+    consistency check. Model B (no energy) is the REAL result: R2 0.62 (boosting) vs 0.53 (Ridge) on unseen facilities.
+  - SHAP (model B): fuel 0.56, capacity 0.51, state 0.27, unit type 0.26, industry 0.25, hours 0.12.
+    It shows what the model relies on, NOT what causes emissions.
+  - Hyperparameters were set to sensible fixed values, not formally tuned.
+
+CV LINK : "Built regression models & SHAP feature analysis ... fuel, energy and operating variables".
+IF REMOVED: no evidence about drivers.
+"""
+import os
+ROOT = os.path.dirname(os.path.abspath(__file__))   # project folder, so the scripts run from anywhere
+
 import pandas as pd, numpy as np, json, shap, matplotlib
 matplotlib.use("Agg"); import matplotlib.pyplot as plt
 from sklearn.model_selection import GroupShuffleSplit
@@ -6,7 +31,7 @@ from sklearn.linear_model import Ridge
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import r2_score, mean_absolute_error
 from sklearn.preprocessing import StandardScaler
-OUT="/home/claude/project"
+OUT=ROOT
 d = pd.read_csv(f"{OUT}/data/emissions_clean.csv", low_memory=False)
 d = d[(d.qc_flag=="ok") & (d.capacity_flag=="ok")].copy()        # trusted rows only
 print("training pool:", len(d))
