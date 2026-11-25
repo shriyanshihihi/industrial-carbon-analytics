@@ -42,3 +42,8 @@ The 15% figure needs a cleaner-grid assumption. "Process units" are combustion u
 Data: NREL/Argonne FIED 2017 (CC BY 4.0). Citation: McMillan, Schoeneberger, Supekar, Thierry (2024), NREL/TP-6A20-90442.
 This codebase was created in November 2026; the git history shows that. Questions about when or with whom a project
 was done are about you, not this code - answer those from your own experience.
+
+## SQLite vs MySQL
+The scripts run the SQL in **SQLite** (a file database, no server) so the project works with no setup.
+The queries are standard SQL, so the same `sql/hotspots.sql` also runs in **MySQL 8+**: load the data with
+`sql/mysql_setup.sql`, then run `sql/hotspots.sql` in MySQL. Say you used MySQL only if you have actually run it there.
